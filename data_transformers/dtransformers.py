@@ -113,12 +113,13 @@ class chain:
         
         self.fs = fs
 
-    def transformers_source(self):
+    def transformers_source(self, hide_decorators=False):
         sources = []
         for f in self.fs:
             src, count = f.sourcelines
-            if src[0].startswith('@'):
-                src = src[1:]
+            if hide_decorators:
+                if src[0].startswith('@'):
+                    src = src[1:]
             sources.append(''.join(src))
         return sources
     

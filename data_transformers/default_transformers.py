@@ -25,3 +25,9 @@ def sort_values(df: DataFrame, how: str, by: list):
 def cast_col(df: DataFrame, col: str, cast_to: type):
     df[col] = df[col].astype(cast_to)
     return df
+
+
+@transformer.convert
+def rename_cols(df: DataFrame, map):
+    df = df.rename(columns=map)
+    return df

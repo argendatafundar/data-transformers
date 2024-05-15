@@ -7,7 +7,7 @@ def get_dataframe_info(df):
     return buf.getvalue()
 
 def dict_to_str(d):
-    return ','.join([f'{k}={v}' for k,v in d.items()])
+    return ', '.join([f'{k}={v!r}' for k,v in d.items()])
 
 def callstack_to_str(callstack):
     frames = []
@@ -29,3 +29,13 @@ def callstack_to_str(callstack):
         frames.append('')
 
     return '\n'.join(frames)
+
+def callstack_to_program(callstack):
+    code = []
+    for i, (f, params, presult) in enumerate(callstack[1:]):
+        params.pop('df', None)
+        params_str = dict_to_str(params)
+        params_str = f'{f.name}({params_str})' + (',' if i < len(callstack) - 2 else '')
+        code.append(params_str)
+
+    return 'pipeline = chain(\n' + '\n\t'.join(code) + '\n)'
