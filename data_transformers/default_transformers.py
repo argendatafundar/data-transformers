@@ -33,6 +33,6 @@ def rename_cols(df: DataFrame, map):
     return df
 
 @transformer.convert
-def df_query(df: DataFrame, condition: str):
+def query(df: DataFrame, condition: str):
     df = df.query(condition)    
     return df
