@@ -1,1 +1,1 @@
-pip -e .
+pip install -e .
