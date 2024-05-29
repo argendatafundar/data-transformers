@@ -47,10 +47,16 @@ class transformer:
         return transformer_r((final_args, self.f(df=applied_args['df'])))
     
     @staticmethod
-    def convert(f):
+    def convert(f, name=None, external_sourcelines=None):
+        if external_sourcelines is None:
+            external_sourcelines = inspect.getsourcelines(f)
+
+        if name is None:
+            name = f.__name__
+
         kwargs = {
-            'external_sourcelines': inspect.getsourcelines(f),
-            'name': f.__name__
+            'external_sourcelines': external_sourcelines,
+            'name': name
         }
         
         params = inspect.signature(f).parameters
