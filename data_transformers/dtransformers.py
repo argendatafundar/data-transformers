@@ -1,8 +1,10 @@
 from typing import Callable, Any, Tuple
 from pandas import DataFrame
 from inspect import Parameter
+from functools import wraps
 import warnings
 from copy import copy
+from random import randint
 
 class staticproperty(property):
     def __get__(self, cls, owner):
@@ -72,11 +74,19 @@ class transformer:
         if has_df.default is not inspect.Parameter.empty:
             raise TypeError(f"Function {f.__name__} cannot have 'df' as a default parameter")
         
+        _params = {k: Parameter.empty for k in params.keys() if k != 'df'}
+        default_args = {k: v.default for k, v in params.items() if v.default is not Parameter.empty}
+
+        # typing hack, wrappeo la func que devuelvo en una funcion que solo tiene bien la signatura
+        _argtypes = '['+', '.join(t.__name__ for k in _params.keys() for t in [f.__annotations__.get(k,  Any)])+']'
+        name = f'currified_{name}'
+        exec(f'def {name}(df: DataFrame) -> Callable[{_argtypes}, transformer]:\n    def __dummy_inner__('+', '.join(_params)+') -> transformer: return ...\n    return __dummy_inner__', globals())
+        dummy_func = eval(name)
+        
+        @wraps(dummy_func)
         def new_f(*ags, **kw):
-            _params = {k: Parameter.empty for k in params.keys() if k != 'df'}
             positional_args = {k: v for k, v in zip(_params.keys(), ags)}
             keyword_args = {k: v for k, v in kw.items()}
-            default_args = {k: v.default for k, v in params.items() if v.default is not Parameter.empty}
             intersection = set(positional_args.keys()).intersection(set(keyword_args.keys()))
             
             if 0 != len(intersection):
