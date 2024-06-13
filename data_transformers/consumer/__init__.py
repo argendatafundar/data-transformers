@@ -22,7 +22,7 @@ def parse_source(source_code: str):
     definitions = definitions[1:-1].map(str.rstrip)
 
     convert_indices = definitions.which(has('@transformer.convert'))
-    return_indices = definitions.which(has('return'))
+    return_indices = definitions.which(lambda x: '    return' in x and not x.startswith('     '))
 
     definitions_indices = convert_indices.zip(return_indices)
 
