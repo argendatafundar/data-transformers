@@ -105,7 +105,7 @@ class transformer:
             
             return transformer(currified_df, **kwargs, partially_applied_args=merge)
         
-        if (len(params) - len(default_args)) > 1:
+        if len(params) > 1:
             return new_f
         else:
             return new_f()
