@@ -121,7 +121,7 @@ def main(subtopico, *args):
 
     workspace = {
     p: {'data': data.find(lambda x: x.name == k),
-        'transformer': transformers.find(lambda x: p in x.name),
+        'transformer': transformers.find(lambda x: (p+'_') in x.name),
         'target': ('argendata/graficos', f'{subtopico}/{p}/data/{p}.csv')}
     for k,v in mappings.items()
     for x in v
