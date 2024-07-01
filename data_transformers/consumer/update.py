@@ -19,6 +19,10 @@ def df_csv_str(df):
     df.to_csv(buffer, index=False)
     return buffer.getvalue()
 
+def repad_name(s: str):
+    left, right = s.split('_g')
+    return left + '_g' + str.zfill(str(right), 2)
+
 class LazyAction:
     def __init__(self, f):
         self.f = f
@@ -125,7 +129,7 @@ def main(subtopico, *args):
         'target': ('argendata/graficos', f'{subtopico}/{p}/data/{p}.csv')}
     for k,v in mappings.items()
     for x in v
-    for p in (x['public'], ) # alias
+    for p in (repad_name(x['public']), ) # alias
     }
 
     for gid, v in workspace.items():
