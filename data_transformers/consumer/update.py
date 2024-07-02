@@ -71,7 +71,10 @@ def create_uploader(gid, data, transformer, path, repo):
         return LazyAction(lambda *args, **kwargs: print(f'{gid} skipped (data not found).'))
 
     data_content = get_data_retry(data, on_retry=data.update)
-    data_content = data_content.decode('utf-8')
+    try:
+            data_content = data_content.decode('utf-8')
+    except UnicodeDecodeError:
+            data_content = data_content.decode('latin-1')
 
     df = pd.read_csv(StringIO(data_content))
 
