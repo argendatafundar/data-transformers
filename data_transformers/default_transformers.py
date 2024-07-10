@@ -55,3 +55,8 @@ def convert_indec_codes_to_isoprov(df: DataFrame, df_cod_col:str):
    df[df_cod_col] = df[df_cod_col].replace(replace_mapper)
 
    return df
+
+@transformer.convert
+def mutiplicar_por_escalar(df: DataFrame, col:str, k:float):
+    df[col] = df[col]*k
+    return df
