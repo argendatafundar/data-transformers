@@ -57,6 +57,11 @@ def convert_indec_codes_to_isoprov(df: DataFrame, df_cod_col:str):
    return df
 
 @transformer.convert
-def mutiplicar_por_escalar(df: DataFrame, col:str, k:float):
+def multiplicar_por_escalar(df: DataFrame, col:str, k:float):
     df[col] = df[col]*k
+    return df
+
+@transformer.convert
+def drop_na(df:DataFrame, col:str):
+    df = df.dropna(subset=col, axis=0)
     return df
