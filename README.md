@@ -334,3 +334,14 @@ El _call stack_ resultante de la ejecución de una `chain` sobre un `DataFrame` 
 - ($t_2$) - El resultado de haber aplicado el resultado anterior a la función ($t_0$) con los parámetros ($t_1$).
 
 El primer elemento del _call stack_ siempre es una ejecución especial, contiene la una función _dummy_ `start`, que no hace nada, y contiene el `DataFrame` como se lo pasó originalmente.
+
+<div>
+<a href="https://fund.ar">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/datos-Fundar/fundartools/assets/86327859/6ef27bf9-141f-4537-9d78-e16b80196959">
+    <source media="(prefers-color-scheme: light)" srcset="https://github.com/datos-Fundar/fundartools/assets/86327859/aa8e7c72-4fad-403a-a8b9-739724b4c533">
+    <img src="fund.ar"></img>
+  </picture>
+</a>
+</div>
+
