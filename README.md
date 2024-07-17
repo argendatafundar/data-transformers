@@ -9,6 +9,7 @@
 </div>
 
 _Data Transformers_ es una biblioteca para Python que busca facilitar la escritura, ejecución, reproducibilidad y el versionado del código fuente que se realice para manipular datos estructurados.
+Es una extensión sintáctica de Python para poder manipular tablas de datos a través de un formato normalizado y expresivo.
 
 Forma parte del conjunto de [herramientas](https://github.com/argendata/backend/tree/main/tools) de ArgenData para el análisis y procesamiento de datos manual-asistido.
 
