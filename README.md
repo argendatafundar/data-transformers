@@ -1,8 +1,11 @@
-﻿<div align='center'>
-    <h1>
-        Data Transformers
-    </h1>
-    <img src="./assets/data_transformers.svg"</img>
+<div align="center">
+<a href="https://fund.ar">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/data_transformers.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/2d2d5751-b9c6-4075-a052-0a34a5047a2d">
+    <img src="fund.ar" width="400"></img>
+  </picture>
+</a>
 </div>
 
 _Data Transformers_ es una biblioteca para Python que busca facilitar la escritura, ejecución, reproducibilidad y el versionado del código fuente que se realice para manipular datos estructurados.
