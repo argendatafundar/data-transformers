@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='Data Transformers',
+    name='data-transformers',
     author='Fundar',
     version='0.1',
     packages=find_packages(),
