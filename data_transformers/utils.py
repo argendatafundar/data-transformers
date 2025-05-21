@@ -38,4 +38,4 @@ def callstack_to_program(callstack):
         params_str = f'{f.name}({params_str})' + (',' if i < len(callstack) - 2 else '')
         code.append(params_str)
 
-    return 'pipeline = chain(\n' + '\n\t'.join(code) + '\n)'
+    return 'pipeline = chain(\n\t' + '\n\t'.join(code) + '\n)'

@@ -37,6 +37,15 @@ class transformer:
             self.sourcelines = external_sourcelines
 
         self.f = f
+    
+    def __hash__(self):
+        return hash((self.name, ''.join(self.sourcelines[0])))
+    
+    def __eq__(self, other):
+        if not isinstance(other, transformer):
+            return False
+        
+        return self.sourcelines == other.sourcelines
 
     def __call__(self, *args, **kwargs) -> Tuple[dict, DataFrame]:
         if kwargs or len(args) > 1:
@@ -135,7 +144,9 @@ class chain:
 
     def transformers_source(self, hide_decorators=False):
         sources = []
-        for f in self.fs:
+        unique_functions = set(self.fs)
+
+        for f in unique_functions:
             src, count = f.sourcelines
             if hide_decorators:
                 if src[0].startswith('@'):
